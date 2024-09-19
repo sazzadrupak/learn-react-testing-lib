@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "server": "json-server --watch src/data/db.json --delay 500",
+    "server": "json-server --watch src/data/db.json --delay 500 --port 2999 --host 0.0.0.0",
     "start": "concurrently \"npm run server\" \"npm run dev\""
   },
   "dependencies": {

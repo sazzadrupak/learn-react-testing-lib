@@ -6,6 +6,7 @@ services:
     container_name: web
     ports:
       - '3000:3000'
+      - '2999:2999'
     environment:
       - VITE_AUTH0_DOMAIN=dev-j2yritfv6ayfwyki.us.auth0.com
       - VITE_AUTH0_CLIENTID=3xsQdxnXlUvO9sGBlhYL9NJTWE4qkJ9I
