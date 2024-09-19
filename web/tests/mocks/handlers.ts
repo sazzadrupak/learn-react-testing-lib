@@ -1,4 +1,5 @@
 import { http, HttpResponse } from 'msw';
+import { products } from './data';
 
 export const handlers = [
   http.get('/categories', () => {
@@ -9,10 +10,15 @@ export const handlers = [
     ])
   }),
   http.get('/products', () => {
-    return HttpResponse.json([
-      { id: 1, name: 'Laptop' },
-      { id: 2, name: 'Shampoo' },
-      { id: 3, name: 'Gardening Gloves' },
-    ])
+    return HttpResponse.json(products)
+  }),
+  http.get('/products/:id', ({ params }) => {
+    const { id } = params;
+
+    const product = products.find((product) => product.id === Number(id));
+    if (!product) {
+      return new HttpResponse(null, { status: 404, statusText: 'Not Found' });
+    }
+    return HttpResponse.json(product);
   }),
 ]
