@@ -56,8 +56,7 @@ function BrowseProducts() {
           <Skeleton />
         </div>
       );
-    if (errorCategories) return <div>Error: {errorCategories}</div>;
-    console.log('categories: ', categories);
+    if (errorCategories) return null;
     return (
       <Select.Root
         onValueChange={(categoryId) =>
