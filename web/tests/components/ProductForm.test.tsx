@@ -51,6 +51,7 @@ describe('ProductForm', () => {
           price: 1,
           categoryId: 1,
         };
+
         const fill = async (product: FormData) => {
           const user = userEvent.setup();
 
@@ -62,6 +63,7 @@ describe('ProductForm', () => {
             await user.type(priceInput, product.price.toString());
           }
 
+          await user.tab(); // resolve act() warning
           await user.click(categoryInput);
           const options = screen.getAllByRole('option');
           await user.click(options[0]);
