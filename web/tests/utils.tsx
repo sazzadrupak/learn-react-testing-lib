@@ -38,6 +38,7 @@ export const mockAuthState = (authState: AuthState) => {
 };
 
 export const navigateTo = (path: string) => {
+  // we can not createBrowserRouter() here because, it is used in browser. Our test env is in node env
   const router = createMemoryRouter(routes, {
     initialEntries: [path],
   });
