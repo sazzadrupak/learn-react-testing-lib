@@ -1,6 +1,9 @@
-import { useAuth0, User } from "@auth0/auth0-react";
-import { delay, http, HttpResponse } from "msw";
-import { server } from "./mocks/server";
+import { useAuth0, User } from '@auth0/auth0-react';
+import { render } from '@testing-library/react';
+import { delay, http, HttpResponse } from 'msw';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import routes from '../src/routes';
+import { server } from './mocks/server';
 
 export const simulateDelay = (endpoint: string) => {
   server.use(
@@ -9,17 +12,17 @@ export const simulateDelay = (endpoint: string) => {
       return HttpResponse.json([]);
     })
   );
-}
+};
 
 export const simulateError = (endpoint: string) => {
   server.use(http.get(endpoint, () => HttpResponse.error()));
-}
+};
 
 type AuthState = {
   isAuthenticated: boolean;
   isLoading: boolean;
-  user: User | undefined
-}
+  user: User | undefined;
+};
 
 export const mockAuthState = (authState: AuthState) => {
   vi.mocked(useAuth0).mockReturnValue({
@@ -30,6 +33,13 @@ export const mockAuthState = (authState: AuthState) => {
     loginWithRedirect: vi.fn(),
     loginWithPopup: vi.fn(),
     logout: vi.fn(),
-    handleRedirectCallback: vi.fn()
-  })
-}
+    handleRedirectCallback: vi.fn(),
+  });
+};
+
+export const navigateTo = (path: string) => {
+  const router = createMemoryRouter(routes, {
+    initialEntries: [path],
+  });
+  render(<RouterProvider router={router} />);
+};

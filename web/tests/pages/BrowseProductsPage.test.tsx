@@ -3,8 +3,8 @@ import {
   screen,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-
 import userEvent from '@testing-library/user-event';
+
 import { Category, Product } from '../../src/entities';
 import BrowseProducts from '../../src/pages/BrowseProductsPage';
 import AllProviders from '../AllProviders';
