@@ -11,7 +11,7 @@
     "server": "json-server --watch src/data/db.json --delay 500 --port 2999 --host 0.0.0.0",
     "start": "concurrently \"npm run server\" \"npm run dev\"",
     "test": "vitest",
-    "test:ui": "vitest --ui",
+    "test:ui": "vitest --ui --open=false",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
